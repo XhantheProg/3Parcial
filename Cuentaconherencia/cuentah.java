@@ -53,13 +53,13 @@ class CuentaDeAhorros extends cuentah {
         super(saldoInicial, tasaAnual);
         activa = saldo >= 10000;
     }
-
+    //extractos
     @Override
     public void consignar(float cantidad) {
         if (activa) {
             super.consignar(cantidad);
         } else {
-            System.out.println("Cuenta de ahorros inactiva. No se puede consignar.");
+            System.out.println("Cuenta de ahorros inactiva. No se puede consignar");
         }
     }
 
