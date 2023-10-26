@@ -169,7 +169,7 @@ public class Main {
             System.out.println("Computadora no encontrada.");
         }
 
-        // Crear un curso universitario
+        // Crear un curso universitario.
         CursoUniversitario curso = new CursoUniversitario();
 
         // Agregar estudiantes al curso
