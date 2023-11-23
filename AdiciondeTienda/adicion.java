@@ -1,6 +1,8 @@
 package AdiciondeTienda;
-
 import java.util.Scanner;
+
+    
+
 
 class Computadora {
     String marca;
@@ -81,28 +83,67 @@ class TiendaDeComputadoras {
 
 public class adicion {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
         // Crear una tienda de computadoras
-        TiendaDeComputadoras tienda = new TiendaDeComputadoras("Mi Tienda", "Juan Pérez", "123456789");
+        System.out.println("Ingrese el nombre de la tienda:");
+        String nombreTienda = scanner.nextLine();
+        System.out.println("Ingrese el nombre del propietario:");
+        String nombrePropietario = scanner.nextLine();
+        System.out.println("Ingrese el identificador tributario:");
+        String identificadorTributario = scanner.nextLine();
+        TiendaDeComputadoras tienda = new TiendaDeComputadoras(nombreTienda, nombrePropietario, identificadorTributario);
 
         // Agregar computadoras a la tienda
-        tienda.agregarComputadora(new Computadora("HP", 8, "Intel i5", "Windows 10", 699.99));
-        tienda.agregarComputadora(new Computadora("Dell", 16, "Intel i7", "Windows 11", 999.99));
+        System.out.println("Ingrese los detalles de la primera computadora:");
+        Computadora comp1 = crearComputadoraDesdeInput(scanner);
+        tienda.agregarComputadora(comp1);
+
+        System.out.println("Ingrese los detalles de la segunda computadora:");
+        Computadora comp2 = crearComputadoraDesdeInput(scanner);
+        tienda.agregarComputadora(comp2);
 
         // Listar las computadoras en la tienda
         System.out.println("Inventario de la tienda:");
         tienda.listarInventario();
 
         // Eliminar una computadora por marca
-        tienda.eliminarComputadora("HP");
+        System.out.println("Ingrese la marca de la computadora a eliminar:");
+        String marcaEliminar = scanner.nextLine();
+        tienda.eliminarComputadora(marcaEliminar);
 
         // Buscar una computadora por marca
-        Computadora comp = tienda.buscarComputadora("Dell");
-        if (comp != null) {
+        System.out.println("Ingrese la marca de la computadora a buscar:");
+        String marcaBuscar = scanner.nextLine();
+        Computadora compEncontrada = tienda.buscarComputadora(marcaBuscar);
+        if (compEncontrada != null) {
             System.out.println("Computadora encontrada:");
-            System.out.println("Marca: " + comp.marca);
-            System.out.println("Memoria: " + comp.memoria + " GB");
+            System.out.println("Marca: " + compEncontrada.marca);
+            System.out.println("Memoria: " + compEncontrada.memoria + " GB");
+           
         } else {
             System.out.println("Computadora no encontrada.");
         }
+
+        scanner.close();
+    }
+
+    public static Computadora crearComputadoraDesdeInput(Scanner scanner) {
+        System.out.println("Ingrese la marca:");
+        String marca = scanner.nextLine();
+        System.out.println("Ingrese la cantidad de memoria (en GB):");
+        int memoria = Integer.parseInt(scanner.nextLine());
+        System.out.println("Ingrese el procesador:");
+        String procesador = scanner.nextLine();
+        System.out.println("Ingrese el sistema operativo:");
+        String sistemaOperativo = scanner.nextLine();
+        System.out.println("Ingrese el precio:");
+        double precio = Double.parseDouble(scanner.nextLine());
+
+        return new Computadora(marca, memoria, procesador, sistemaOperativo, precio);
     }
 }
+
+
+    
+
